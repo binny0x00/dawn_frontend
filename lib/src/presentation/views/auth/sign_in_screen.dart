@@ -21,45 +21,44 @@ class _SettingScreenState extends State<SignInScreen> {
     final langVm = context.watch<LanguageViewModel>();
 
     return CustomScaffold(
-      body: Container(
-        padding: const EdgeInsets.fromLTRB(16, 62, 16, 33),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // 1. 언어 선택 드롭다운
-            Align(
-              alignment: Alignment.topRight,
-              child: IntrinsicWidth(
-                child: LanguageDropdown(
-                  value: langVm.display,
-                  onChanged: (v) {
-                    setState(() {
-                      langVm.changeLanguage(v);
-                    });
-                  },
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(16, 62, 16, 33),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // 1. 언어 선택 드롭다운
+              Align(
+                alignment: Alignment.topRight,
+                child: IntrinsicWidth(
+                  child: LanguageDropdown(
+                    value: langVm.display,
+                    onChanged: (v) {
+                      setState(() {
+                        langVm.changeLanguage(v);
+                      });
+                    },
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 43),
-            // 2. 로고
-            SvgPicture.asset(
-              'assets/icons/logo_main.svg',
-              width: 239,
-              height: 134,
-            ),
-            const SizedBox(height: 37),
-            // 3. 로그인 카드
-            const Expanded(
-              child: SingleChildScrollView(
-                child: SignInCard(),
+              const SizedBox(height: 43),
+              // 2. 로고
+              SvgPicture.asset(
+                'assets/icons/logo_main.svg',
+                width: 239,
+                height: 134,
               ),
-            ),
-            // 4. 출처
-            Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: Text(Strings.source, style: AppTextStyle.sourceText),
-            ),
-          ],
+              const SizedBox(height: 37),
+              // 3. 로그인 카드
+              const SignInCard(),
+              // 4. 출처
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: Text(Strings.source, style: AppTextStyle.sourceText),
+              ),
+            ],
+          ),
         ),
       ),
     );

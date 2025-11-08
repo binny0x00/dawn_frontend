@@ -21,53 +21,46 @@ class _SettingScreenState extends State<SignInScreen> {
     final langVm = context.watch<LanguageViewModel>();
 
     return CustomScaffold(
-      body: Stack(
-        children: [
-          // 1. 언어 선택 드롭다운
-          Positioned(
-            top: 60,
-            right: 16,
-            child: SizedBox(
-              width: 86,
-              height: 35,
-              child: LanguageDropdown(
-                value: langVm.display,
-                onChanged: (v) {
-                  setState(() {
-                    langVm.changeLanguage(v);
-                  });
-                },
+      body: Container(
+        padding: const EdgeInsets.fromLTRB(16, 62, 16, 33),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // 1. 언어 선택 드롭다운
+            Align(
+              alignment: Alignment.topRight,
+              child: IntrinsicWidth(
+                child: LanguageDropdown(
+                  value: langVm.display,
+                  onChanged: (v) {
+                    setState(() {
+                      langVm.changeLanguage(v);
+                    });
+                  },
+                ),
               ),
             ),
-          ),
-          // 로고 ~
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const SizedBox(height: 110),
-                // 2. 로고
-                SvgPicture.asset(
-                  'assets/icons/logo_main.svg',
-                  width: 240,
-                  height: 134,
-                ),
-                const SizedBox(height: 45),
-                // 3. 로그인 카드
-                const SignInCard(),
-                const SizedBox(height: 55),
-                // 4. 출처
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 33),
-                  child: const Text(
-                    Strings.source,
-                    style: AppTextStyle.sourceText,
-                  ),
-                ),
-              ],
+            const SizedBox(height: 43),
+            // 2. 로고
+            SvgPicture.asset(
+              'assets/icons/logo_main.svg',
+              width: 239,
+              height: 134,
             ),
-          ),
-        ],
+            const SizedBox(height: 37),
+            // 3. 로그인 카드
+            const Expanded(
+              child: SingleChildScrollView(
+                child: SignInCard(),
+              ),
+            ),
+            // 4. 출처
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: Text(Strings.source, style: AppTextStyle.sourceText),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -56,9 +56,7 @@ class _SignUpCardState extends State<SignUpCard> {
     return Stack(
       children: [
         Container(
-          width: 300,
-          height: 518,
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.fromLTRB(27, 20, 27, 8),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),

@@ -27,20 +27,16 @@ class _LanguageDropdownState extends State<LanguageDropdown> {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
-      // 드롭다운의 기본 밑줄 제거
       child: DropdownButtonFormField2<String>(
         isExpanded: false,
-        buttonStyleData: const ButtonStyleData(height: 35, width: 86),
+        buttonStyleData: const ButtonStyleData(height: 30),
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,
           // hint
           hintText: '언어 선택',
           hintStyle: TextStyle(color: Colors.grey[600]),
-          contentPadding: const EdgeInsets.symmetric(
-            horizontal: 7,
-            vertical: 0,
-          ),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 10),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
             borderSide: const BorderSide(color: Colors.transparent, width: 1),

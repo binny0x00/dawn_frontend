@@ -23,10 +23,7 @@ class SignInCard extends StatelessWidget {
     final router = GoRouter.of(context);
 
     return Container(
-      width: 300,
-      height: 440,
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      //내부 여백
+      padding: const EdgeInsets.fromLTRB(27, 20, 27, 8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -34,7 +31,6 @@ class SignInCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 15), // 위쪽 여백
           Text(
             AppLocalizations.of(context)!.sign_in,
             style: AppTextStyle.heading3,

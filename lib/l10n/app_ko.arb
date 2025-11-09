@@ -4,7 +4,7 @@
     "sign_in": "로그인",
     "sign_up": "회원가입",
     "email": "이메일",
-    "password": "비밀번호",
+    "password": "비밀번호 (6자리 이상 입력해주세요.)",
     "check_password": "비밀번호 확인",
     "login_btn": "로그인 하기",
     "or": "또는",

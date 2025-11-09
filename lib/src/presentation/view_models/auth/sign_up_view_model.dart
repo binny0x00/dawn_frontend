@@ -101,9 +101,12 @@ class SignUpViewModel extends ChangeNotifier {
   Future<String?> signUpAndLoginToBackend() async {
     setLoading(true);
     try {
+      // Firebase 회원가입 시도
       final result = await signUp();
       if (result != null) return result;
 
+      // Firebase 유저 정보 가져오기
+      // Firebase ID Token
       final user = getCurrentUser();
       final idToken = await user?.getIdToken();
       if (idToken == null) return 'error_token_null';

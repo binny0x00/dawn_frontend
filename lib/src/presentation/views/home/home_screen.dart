@@ -113,7 +113,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 final episode = weeklyVm.weekly;
 
                 if (episode == null) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Expanded(
+                    child: Center(child: CircularProgressIndicator()),
+                  );
                 }
                 final locale = langVm.currentLocale.languageCode;
 

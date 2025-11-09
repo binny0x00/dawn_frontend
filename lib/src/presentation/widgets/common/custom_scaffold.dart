@@ -26,7 +26,7 @@ class CustomScaffold extends StatelessWidget {
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       backgroundColor: Colors.transparent,
       appBar: appBar,
-      body: SafeArea(child: Stack(
+      body: Stack(
         children: [
           // 1) 배경
           Positioned.fill(
@@ -36,7 +36,7 @@ class CustomScaffold extends StatelessWidget {
           // 2) 실제 내용
           body,
         ],
-      ),),
+      ),
       floatingActionButton: floatingActionButton,
       bottomNavigationBar: bottomNavigationBar,
     );

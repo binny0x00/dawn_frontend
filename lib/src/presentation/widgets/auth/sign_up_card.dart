@@ -53,138 +53,140 @@ class _SignUpCardState extends State<SignUpCard> {
     final l10n = AppLocalizations.of(context)!;
     final router = GoRouter.of(context);
 
-    return Stack(
-      children: [
-        Container(
-          padding: const EdgeInsets.fromLTRB(27, 20, 27, 8),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 15),
-              Text(l10n.sign_up, style: AppTextStyle.heading3),
-              const SizedBox(height: 18),
-              Text(l10n.email, style: AppTextStyle.bodyTextPoppins),
-              const SizedBox(height: 2),
-              AuthInputField(
-                icon: SvgPicture.asset(
-                  'assets/icons/email.svg',
-                  width: 20,
-                  height: 20,
+    return SafeArea(
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.fromLTRB(27, 20, 27, 8),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 15),
+                Text(l10n.sign_up, style: AppTextStyle.heading3),
+                const SizedBox(height: 18),
+                Text(l10n.email, style: AppTextStyle.bodyTextPoppins),
+                const SizedBox(height: 2),
+                AuthInputField(
+                  icon: SvgPicture.asset(
+                    'assets/icons/email.svg',
+                    width: 20,
+                    height: 20,
+                  ),
+                  onChanged: viewModel.setEmail,
                 ),
-                onChanged: viewModel.setEmail,
-              ),
-              const SizedBox(height: 10),
-              Text(l10n.password, style: AppTextStyle.bodyTextPoppins),
-              AuthInputField(
-                icon: SvgPicture.asset(
-                  'assets/icons/password.svg',
-                  width: 24,
-                  height: 24,
+                const SizedBox(height: 10),
+                Text(l10n.password, style: AppTextStyle.bodyTextPoppins),
+                AuthInputField(
+                  icon: SvgPicture.asset(
+                    'assets/icons/password.svg',
+                    width: 24,
+                    height: 24,
+                  ),
+                  onChanged: viewModel.setPassword,
+                  focusNode: _passwordFocusNode,
+                  obscure: true,
                 ),
-                onChanged: viewModel.setPassword,
-                focusNode: _passwordFocusNode,
-                obscure: true,
-              ),
-              const SizedBox(height: 10),
-              Text(l10n.check_password, style: AppTextStyle.bodyTextPoppins),
-              const SizedBox(height: 2),
-              AuthInputField(
-                icon: SvgPicture.asset(
-                  'assets/icons/success.svg',
-                  width: 24,
-                  height: 24,
+                const SizedBox(height: 10),
+                Text(l10n.check_password, style: AppTextStyle.bodyTextPoppins),
+                const SizedBox(height: 2),
+                AuthInputField(
+                  icon: SvgPicture.asset(
+                    'assets/icons/success.svg',
+                    width: 24,
+                    height: 24,
+                  ),
+                  onChanged: viewModel.setConfirmPassword,
+                  obscure: true,
                 ),
-                onChanged: viewModel.setConfirmPassword,
-                obscure: true,
-              ),
-              const SizedBox(height: 25),
-              Center(
-                child: Column(
-                  children: [
-                    ContinueButton(
-                      onPressed: () async {
-                        final result =
-                            await viewModel.signUpAndLoginToBackend();
-                        if (result != null) {
-                          final message = l10n.getByKey(result);
-                          messenger.showSnackBar(
-                            SnackBar(
-                              content: Text(message),
-                              duration: const Duration(seconds: 2),
-                            ),
-                          );
-                        } else {
-                          messenger.showSnackBar(
-                            SnackBar(
-                              content: Text(l10n.email_verification_sent),
-                              duration: const Duration(seconds: 3),
-                            ),
-                          );
-                          router.go(AppRoutes.home);
-                        }
-                      },
-                    ),
-                    const SizedBox(height: 18),
-                    const OrDivider(),
-                    const SizedBox(height: 18),
-                    GoogleLoginBtn(
-                      onPressed: () async {
-                        final result =
-                            await viewModel.googleSignUpAndLoginToBackend();
-                        if (result != null) {
-                          messenger.showSnackBar(
-                            SnackBar(content: Text(l10n.getByKey(result))),
-                          );
-                        } else {
-                          router.go(AppRoutes.home);
-                        }
-                      },
-                    ),
-                    const SizedBox(height: 18),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          l10n.sign_in_description,
-                          style: AppTextStyle.bodyTextPoppins.copyWith(
-                            fontSize: 12,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        GestureDetector(
-                          onTap: () {
-                            context.go(AppRoutes.signIn);
-                          },
-                          child: Text(
-                            l10n.sign_in_btn,
+                const SizedBox(height: 25),
+                Center(
+                  child: Column(
+                    children: [
+                      ContinueButton(
+                        onPressed: () async {
+                          final result =
+                              await viewModel.signUpAndLoginToBackend();
+                          if (result != null) {
+                            final message = l10n.getByKey(result);
+                            messenger.showSnackBar(
+                              SnackBar(
+                                content: Text(message),
+                                duration: const Duration(seconds: 2),
+                              ),
+                            );
+                          } else {
+                            messenger.showSnackBar(
+                              SnackBar(
+                                content: Text(l10n.email_verification_sent),
+                                duration: const Duration(seconds: 3),
+                              ),
+                            );
+                            router.go(AppRoutes.home);
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 18),
+                      const OrDivider(),
+                      const SizedBox(height: 18),
+                      GoogleLoginBtn(
+                        onPressed: () async {
+                          final result =
+                              await viewModel.googleSignUpAndLoginToBackend();
+                          if (result != null) {
+                            messenger.showSnackBar(
+                              SnackBar(content: Text(l10n.getByKey(result))),
+                            );
+                          } else {
+                            router.go(AppRoutes.home);
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 18),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            l10n.sign_in_description,
                             style: AppTextStyle.bodyTextPoppins.copyWith(
-                              fontWeight: FontWeight.w600,
-                              decoration: TextDecoration.underline,
+                              fontSize: 12,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          const SizedBox(width: 8),
+                          GestureDetector(
+                            onTap: () {
+                              context.go(AppRoutes.signIn);
+                            },
+                            child: Text(
+                              l10n.sign_in_btn,
+                              style: AppTextStyle.bodyTextPoppins.copyWith(
+                                fontWeight: FontWeight.w600,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ),
-
-        // 로딩 인디케이터 오버레이
-        if (viewModel.isLoading)
-          Positioned.fill(
-            child: Container(
-              color: Colors.black.withOpacity(0.4),
-              child: const Center(child: CircularProgressIndicator()),
+              ],
             ),
           ),
-      ],
+
+          // 로딩 인디케이터 오버레이
+          if (viewModel.isLoading)
+            Positioned.fill(
+              child: Container(
+                color: Colors.black.withOpacity(0.4),
+                child: const Center(child: CircularProgressIndicator()),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

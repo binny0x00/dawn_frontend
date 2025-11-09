@@ -57,7 +57,7 @@ class LocationDetail {
       keywords: parsedKeywords,
       exhibitionTime: json['exhibitionTime'],
       available: json['available'],
-      translate: json['translate'],
+      translate: json['translateEng'],
     );
   }
 

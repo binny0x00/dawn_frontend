@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       locale: context.watch<LanguageViewModel>().currentLocale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

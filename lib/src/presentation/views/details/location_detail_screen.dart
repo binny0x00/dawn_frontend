@@ -115,6 +115,7 @@ class _LocationDetailScreenState extends State<LocationDetailScreen> {
                               style: typography.AppTextStyle.bodyTextPoppins
                                   .copyWith(fontSize: 16, color: Colors.white),
                             ),
+                            const SizedBox(height: 90,),
                           ] else if (locationViewModel.selectedTabIndex == 1) ...[
                             if (commentViewModel.comments.isEmpty)
                               const Text(

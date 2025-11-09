@@ -37,6 +37,8 @@ class AiTourScreen extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(16, 60, 16, 16),
                 child: Column(
                   children: [
+                    const SizedBox(height: 40),
+                    const Center(child: Text("AI-generated responses may contain errors. \nPlease verify important information.", style: TextStyle(color: Colors.white, fontSize: 10),textAlign: TextAlign.center,),),
                     Expanded(
                       child: ListView.builder(
                         key: UniqueKey(),

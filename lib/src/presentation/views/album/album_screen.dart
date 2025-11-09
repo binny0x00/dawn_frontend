@@ -14,16 +14,24 @@ class AlbumScreen extends StatefulWidget {
 }
 
 class _AlbumScreenState extends State<AlbumScreen> {
-  late Future<void> _loadDataFuture;
+  Future<void> _loadDataFuture = Future.value();
 
   @override
   void initState() {
     super.initState();
-    _loadDataFuture = _loadData();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        // ← 추가
+        _loadDataFuture = _loadData();
+      });
+    });
   }
 
   Future<void> _loadData() async {
-    await Provider.of<StampCardListViewModel>(context, listen: false).loadStampCards();
+    await Provider.of<StampCardListViewModel>(
+      context,
+      listen: false,
+    ).loadStampCards();
   }
 
   @override
